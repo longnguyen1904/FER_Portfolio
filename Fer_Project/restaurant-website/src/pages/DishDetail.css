@@ -1,0 +1,164 @@
+/* ==========================================
+   DISH DETAIL PAGE
+   ========================================== */
+
+.dish-detail-page {
+  padding: 40px 0 60px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--primary);
+  cursor: pointer;
+  margin-bottom: 24px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.back-btn:hover {
+  color: var(--primary-dark);
+}
+
+.dish-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.dish-detail-image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.dish-detail-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.dish-detail-info h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--secondary);
+  margin-bottom: 12px;
+}
+
+.dish-detail-price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.dish-detail-desc {
+  color: var(--text-light);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.dish-detail-ingredients h3 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: var(--secondary);
+}
+
+.ingredients-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.ingredient-tag {
+  padding: 6px 14px;
+  background: rgba(232, 93, 4, 0.08);
+  color: var(--primary-dark);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Quantity Selector */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.quantity-selector label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f3f4f6;
+  border-radius: var(--radius-sm);
+  padding: 4px;
+}
+
+.qty-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+
+.qty-btn:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.qty-value {
+  min-width: 40px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.not-found-dish {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.not-found-dish h2 {
+  margin-bottom: 20px;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .dish-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .dish-detail-image img {
+    height: 280px;
+  }
+
+  .dish-detail-info h1 {
+    font-size: 1.6rem;
+  }
+}

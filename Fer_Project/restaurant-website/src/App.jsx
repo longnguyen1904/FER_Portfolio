@@ -4,13 +4,13 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Modal from './components/Modal';
 import Home from './pages/Home';
-// import Menu from './pages/Menu';
-// import DishDetail from './pages/DishDetail';
-// import Cart from './pages/Cart';
-// import Checkout from './pages/Checkout';
-// import Reservation from './pages/Reservation';
-// import Contact from './pages/Contact';
-// import Reviews from './pages/Reviews';
+import Menu from './pages/Menu';
+import DishDetail from './pages/DishDetail';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import Reservation from './pages/Reservation';
+import Contact from './pages/Contact';
+import Reviews from './pages/Reviews';
 import NotFound from './pages/NotFound';
 import './App.css';
 
@@ -88,7 +88,6 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            {/*
             <Route path="/menu" element={<Menu addToCart={addToCart} />} />
             <Route
               path="/dish/:id"
@@ -123,7 +122,6 @@ function App() {
               element={<Contact showModal={showModal} />}
             />
             <Route path="/reviews" element={<Reviews />} />
-            */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
