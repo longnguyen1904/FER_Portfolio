@@ -1,15 +1,45 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { dishes } from '../data/dishes';
 import './DishDetail.css';
 
 function DishDetail({ addToCart }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
+  
+  const [dish, setDish] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Tìm món ăn theo id
-  const dish = dishes.find((d) => d.id === parseInt(id));
+  // Lấy chi tiết món ăn từ json-server dựa trên ID
+  useEffect(() => {
+    const fetchDish = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/dishes/${id}`);
+        if (res.ok) {
+          const data = await res.json();
+          setDish(data);
+        } else {
+          setDish(null);
+        }
+      } catch (error) {
+        console.error('Lỗi khi tải chi tiết món ăn:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDish();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="dish-detail-page">
+        <div className="container" style={{ textAlign: 'center', marginTop: '50px' }}>
+          <h2>Đang tải thông tin món ăn...</h2>
+        </div>
+      </div>
+    );
+  }
 
   if (!dish) {
     return (
@@ -55,7 +85,7 @@ function DishDetail({ addToCart }) {
             <div className="dish-detail-ingredients">
               <h3>Thành phần:</h3>
               <div className="ingredients-list">
-                {dish.ingredients.map((ing, index) => (
+                {dish.ingredients && dish.ingredients.map((ing, index) => (
                   <span key={index} className="ingredient-tag">
                     {ing}
                   </span>

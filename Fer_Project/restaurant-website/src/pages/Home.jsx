@@ -1,8 +1,30 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { featuredDishes } from '../data/dishes';
 import './Home.css';
 
 function Home() {
+  const [featuredDishes, setFeaturedDishes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Lấy danh sách món nổi bật từ API
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/dishes?featured=true');
+        if (res.ok) {
+          const data = await res.json();
+          setFeaturedDishes(data);
+        }
+      } catch (error) {
+        console.error('Lỗi khi tải món nổi bật:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeatured();
+  }, []);
+
   return (
     <div className="home">
       {/* Banner */}
@@ -66,28 +88,32 @@ function Home() {
       <section className="featured-section">
         <div className="container">
           <h2 className="section-title">Món Ăn Nổi Bật</h2>
-          <div className="featured-grid">
-            {featuredDishes.map((dish) => (
-              <div key={dish.id} className="featured-card">
-                <div className="featured-img-wrapper">
-                  <img src={dish.image} alt={dish.name} />
-                  <span className="featured-badge">⭐ Nổi bật</span>
-                </div>
-                <div className="featured-info">
-                  <h3>{dish.name}</h3>
-                  <p>{dish.description}</p>
-                  <div className="featured-bottom">
-                    <span className="featured-price">
-                      {dish.price.toLocaleString('vi-VN')}₫
-                    </span>
-                    <Link to={`/dish/${dish.id}`} className="btn btn-sm">
-                      Xem chi tiết
-                    </Link>
+          {loading ? (
+            <p style={{textAlign: 'center'}}>Đang tải món ăn...</p>
+          ) : (
+            <div className="featured-grid">
+              {featuredDishes.map((dish) => (
+                <div key={dish.id} className="featured-card">
+                  <div className="featured-img-wrapper">
+                    <img src={dish.image} alt={dish.name} />
+                    <span className="featured-badge">⭐ Nổi bật</span>
+                  </div>
+                  <div className="featured-info">
+                    <h3>{dish.name}</h3>
+                    <p>{dish.description}</p>
+                    <div className="featured-bottom">
+                      <span className="featured-price">
+                        {dish.price.toLocaleString('vi-VN')}₫
+                      </span>
+                      <Link to={`/dish/${dish.id}`} className="btn btn-sm">
+                        Xem chi tiết
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

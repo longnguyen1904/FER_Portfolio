@@ -1,0 +1,205 @@
+{
+  "tables": [
+    { "id": "1", "name": "Bàn 1 (2 người)", "capacity": 2, "status": "available" },
+    { "id": "2", "name": "Bàn 2 (2 người)", "capacity": 2, "status": "available" },
+    { "id": "3", "name": "Bàn 3 (4 người)", "capacity": 4, "status": "available" },
+    { "id": "4", "name": "Bàn 4 (4 người)", "capacity": 4, "status": "available" },
+    { "id": "5", "name": "Bàn 5 (4 người)", "capacity": 4, "status": "available" },
+    { "id": "6", "name": "Bàn 6 (6 người)", "capacity": 6, "status": "available" },
+    { "id": "7", "name": "Bàn 7 (8 người)", "capacity": 8, "status": "available" },
+    { "id": "8", "name": "VIP 1 (10 người)", "capacity": 10, "status": "available" }
+  ],
+  "reservations": [],
+  "reviews": [
+    {
+      "id": "1",
+      "name": "Nguyễn Văn An",
+      "rating": 5,
+      "content": "Đồ ăn rất ngon, phục vụ tận tình. Phở bò tái nạm ở đây là số 1!",
+      "date": "2025-12-15"
+    },
+    {
+      "id": "2",
+      "name": "Trần Thị Bích",
+      "rating": 4,
+      "content": "Không gian đẹp, yên tĩnh. Cơm tấm sườn rất ngon, giá cả hợp lý.",
+      "date": "2025-12-20"
+    },
+    {
+      "id": "3",
+      "name": "Lê Hoàng Nam",
+      "rating": 5,
+      "content": "Bò lúc lắc ở đây xuất sắc, thịt mềm và nước sốt đậm đà. Sẽ quay lại!",
+      "date": "2026-01-05"
+    }
+  ],
+  "categories": [
+    { "id": "all", "name": "Tất cả" },
+    { "id": "khai-vi", "name": "Khai vị" },
+    { "id": "mon-chinh", "name": "Món chính" },
+    { "id": "do-uong", "name": "Đồ uống" },
+    { "id": "trang-mieng", "name": "Tráng miệng" }
+  ],
+  "dishes": [
+    {
+      "id": "1",
+      "name": "Gỏi cuốn tôm thịt",
+      "image": "https://images.unsplash.com/photo-1562967916-eb82221dfb44?w=600",
+      "price": 65000,
+      "description": "Gỏi cuốn tươi mát với tôm, thịt heo, bún và rau sống, chấm tương đậu phộng.",
+      "category": "khai-vi",
+      "ingredients": ["Tôm", "Thịt heo", "Bún", "Rau sống", "Bánh tráng", "Tương đậu phộng"],
+      "featured": true
+    },
+    {
+      "id": "2",
+      "name": "Chả giò chiên giòn",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=600",
+      "price": 75000,
+      "description": "Chả giò vàng ươm, giòn rụm với nhân thịt heo, miến, nấm mèo.",
+      "category": "khai-vi",
+      "ingredients": ["Thịt heo xay", "Miến", "Nấm mèo", "Cà rốt", "Bánh tráng"],
+      "featured": false
+    },
+    {
+      "id": "3",
+      "name": "Súp bí đỏ kem tươi",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600",
+      "price": 55000,
+      "description": "Súp bí đỏ mịn màng, béo ngậy với kem tươi và hạt bí rang.",
+      "category": "khai-vi",
+      "ingredients": ["Bí đỏ", "Kem tươi", "Hành tây", "Bơ", "Hạt bí"],
+      "featured": false
+    },
+    {
+      "id": "4",
+      "name": "Phở bò tái nạm",
+      "image": "https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=600",
+      "price": 85000,
+      "description": "Phở bò truyền thống với nước dùng hầm xương 12 tiếng, thịt bò tái và nạm.",
+      "category": "mon-chinh",
+      "ingredients": ["Bánh phở", "Thịt bò tái", "Thịt bò nạm", "Hành lá", "Rau thơm", "Nước dùng xương"],
+      "featured": true
+    },
+    {
+      "id": "5",
+      "name": "Cơm tấm sườn bì chả",
+      "image": "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600",
+      "price": 79000,
+      "description": "Cơm tấm với sườn nướng thơm lừng, bì heo và chả trứng.",
+      "category": "mon-chinh",
+      "ingredients": ["Cơm tấm", "Sườn nướng", "Bì heo", "Chả trứng", "Đồ chua", "Nước mắm"],
+      "featured": true
+    },
+    {
+      "id": "6",
+      "name": "Bún chả Hà Nội",
+      "image": "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600",
+      "price": 82000,
+      "description": "Bún chả thơm ngon với chả viên, chả miếng nướng than hoa, nước chấm chua ngọt.",
+      "category": "mon-chinh",
+      "ingredients": ["Bún", "Chả viên", "Chả miếng", "Rau sống", "Nước chấm"],
+      "featured": false
+    },
+    {
+      "id": "7",
+      "name": "Bò lúc lắc khoai tây",
+      "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600",
+      "price": 145000,
+      "description": "Thịt bò Úc áp chảo với khoai tây chiên, rau xà lách và sốt tiêu đen.",
+      "category": "mon-chinh",
+      "ingredients": ["Thịt bò Úc", "Khoai tây", "Xà lách", "Cà chua", "Hành tây", "Sốt tiêu đen"],
+      "featured": true
+    },
+    {
+      "id": "8",
+      "name": "Cá hồi nướng sốt chanh dây",
+      "image": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600",
+      "price": 195000,
+      "description": "Cá hồi Na Uy nướng mềm mịn với sốt chanh dây thơm lừng.",
+      "category": "mon-chinh",
+      "ingredients": ["Cá hồi Na Uy", "Chanh dây", "Bơ", "Tỏi", "Rau củ nướng"],
+      "featured": false
+    },
+    {
+      "id": "9",
+      "name": "Trà sen vàng",
+      "image": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600",
+      "price": 45000,
+      "description": "Trà xanh pha cùng hạt sen và lá dứa, hương thơm thanh mát.",
+      "category": "do-uong",
+      "ingredients": ["Trà xanh", "Hạt sen", "Lá dứa", "Đường phèn"],
+      "featured": false
+    },
+    {
+      "id": "10",
+      "name": "Sinh tố bơ",
+      "image": "https://images.unsplash.com/photo-1638176066666-ffb2f013c7dd?w=600",
+      "price": 55000,
+      "description": "Sinh tố bơ béo ngậy, thơm lừng, bổ dưỡng.",
+      "category": "do-uong",
+      "ingredients": ["Bơ", "Sữa đặc", "Đá", "Sữa tươi"],
+      "featured": true
+    },
+    {
+      "id": "11",
+      "name": "Cà phê sữa đá",
+      "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600",
+      "price": 35000,
+      "description": "Cà phê pha phin truyền thống Việt Nam với sữa đặc.",
+      "category": "do-uong",
+      "ingredients": ["Cà phê phin", "Sữa đặc", "Đá"],
+      "featured": false
+    },
+    {
+      "id": "12",
+      "name": "Nước ép cam tươi",
+      "image": "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600",
+      "price": 40000,
+      "description": "Nước cam ép tươi nguyên chất, giàu vitamin C.",
+      "category": "do-uong",
+      "ingredients": ["Cam tươi", "Đá", "Đường"],
+      "featured": false
+    },
+    {
+      "id": "13",
+      "name": "Chè khúc bạch",
+      "image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600",
+      "price": 45000,
+      "description": "Chè khúc bạch mát lạnh với thạch, vải, nhãn và nước cốt dừa.",
+      "category": "trang-mieng",
+      "ingredients": ["Thạch", "Vải", "Nhãn", "Nước cốt dừa", "Đường"],
+      "featured": false
+    },
+    {
+      "id": "14",
+      "name": "Bánh flan caramel",
+      "image": "https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=600",
+      "price": 35000,
+      "description": "Bánh flan mềm mịn với lớp caramel đắng nhẹ.",
+      "category": "trang-mieng",
+      "ingredients": ["Trứng", "Sữa tươi", "Đường", "Vani"],
+      "featured": true
+    },
+    {
+      "id": "15",
+      "name": "Kem dừa non",
+      "image": "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=600",
+      "price": 50000,
+      "description": "Kem dừa non thơm béo, mát lạnh, phủ dừa nạo.",
+      "category": "trang-mieng",
+      "ingredients": ["Dừa non", "Kem", "Sữa dừa", "Đường"],
+      "featured": false
+    },
+    {
+      "id": "16",
+      "name": "Bánh mì thịt nướng",
+      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=600",
+      "price": 45000,
+      "description": "Bánh mì giòn với thịt nướng, đồ chua, rau thơm và nước sốt đặc biệt.",
+      "category": "khai-vi",
+      "ingredients": ["Bánh mì", "Thịt nướng", "Đồ chua", "Rau thơm", "Nước sốt"],
+      "featured": false
+    }
+  ]
+}

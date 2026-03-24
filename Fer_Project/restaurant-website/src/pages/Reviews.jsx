@@ -1,29 +1,64 @@
-import { useState } from 'react';
-import { sampleReviews } from '../data/dishes';
+import { useState, useEffect } from 'react';
 import './Reviews.css';
 
 function Reviews() {
-  const [reviews, setReviews] = useState(sampleReviews);
+  const [reviews, setReviews] = useState([]);
   const [form, setForm] = useState({ name: '', rating: 5, content: '' });
+  const [loading, setLoading] = useState(true);
+
+  // Lấy dữ liệu đánh giá từ json-server
+  const fetchReviews = async () => {
+    try {
+      const res = await fetch('http://localhost:5000/reviews?_sort=date&_order=desc');
+      if (res.ok) {
+        const data = await res.json();
+        // Sắp xếp JSON-Server trả về có thể khác ở các phiên bản, nên reverse thử cho chắc (mới nhất lên đầu)
+        setReviews(data.reverse());
+      }
+    } catch (error) {
+      console.error('Lỗi khi tải đánh giá:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.content) return;
 
     const newReview = {
-      id: Date.now(),
+      id: Date.now().toString(),
       name: form.name,
       rating: parseInt(form.rating),
       content: form.content,
       date: new Date().toISOString().split('T')[0],
     };
 
-    setReviews([newReview, ...reviews]);
-    setForm({ name: '', rating: 5, content: '' });
+    try {
+      // Lưu đánh giá mới vào JSON-Server
+      await fetch('http://localhost:5000/reviews', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newReview),
+      });
+
+      // Thêm ngay lập tức trên UI để user thấy
+      setReviews([newReview, ...reviews]);
+      setForm({ name: '', rating: 5, content: '' });
+    } catch (error) {
+      console.error('Lỗi khi gửi đánh giá:', error);
+      alert('Không thể gửi đánh giá. Hãy chắc chắn json-server đang chạy!');
+    }
   };
 
   // Render sao
@@ -32,9 +67,9 @@ function Reviews() {
   };
 
   // Tính trung bình sao
-  const avgRating = (
-    reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
-  ).toFixed(1);
+  const avgRating = reviews.length > 0 
+    ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
+    : 0;
 
   return (
     <div className="reviews-page">
@@ -48,7 +83,7 @@ function Reviews() {
         <div className="reviews-stats">
           <div className="stats-overall">
             <span className="stats-number">{avgRating}</span>
-            <span className="stats-stars">{renderStars(Math.round(avgRating))}</span>
+            <span className="stats-stars">{renderStars(Math.round(avgRating || 0))}</span>
             <span className="stats-count">{reviews.length} đánh giá</span>
           </div>
         </div>
@@ -56,23 +91,29 @@ function Reviews() {
         <div className="reviews-layout">
           {/* Danh sách đánh giá */}
           <div className="reviews-list">
-            {reviews.map((review) => (
-              <div key={review.id} className="review-card">
-                <div className="review-header">
-                  <div className="review-avatar">
-                    {review.name.charAt(0).toUpperCase()}
+            {loading ? (
+              <p>Đang tải dữ liệu đánh giá từ server...</p>
+            ) : reviews.length === 0 ? (
+              <p>Chưa có đánh giá nào. Hãy là người đầu tiên!</p>
+            ) : (
+              reviews.map((review) => (
+                <div key={review.id} className="review-card">
+                  <div className="review-header">
+                    <div className="review-avatar">
+                      {review.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div className="review-meta">
+                      <h4>{review.name}</h4>
+                      <span className="review-date">{review.date}</span>
+                    </div>
+                    <div className="review-rating">
+                      {renderStars(review.rating)}
+                    </div>
                   </div>
-                  <div className="review-meta">
-                    <h4>{review.name}</h4>
-                    <span className="review-date">{review.date}</span>
-                  </div>
-                  <div className="review-rating">
-                    {renderStars(review.rating)}
-                  </div>
+                  <p className="review-content">{review.content}</p>
                 </div>
-                <p className="review-content">{review.content}</p>
-              </div>
-            ))}
+              ))
+            )}
           </div>
 
           {/* Form thêm đánh giá */}
@@ -95,12 +136,7 @@ function Reviews() {
 
               <div className="form-group">
                 <label htmlFor="rating">Đánh giá</label>
-                <select
-                  id="rating"
-                  name="rating"
-                  value={form.rating}
-                  onChange={handleChange}
-                >
+                <select id="rating" name="rating" value={form.rating} onChange={handleChange}>
                   <option value="5">⭐⭐⭐⭐⭐ Xuất sắc</option>
                   <option value="4">⭐⭐⭐⭐ Tốt</option>
                   <option value="3">⭐⭐⭐ Bình thường</option>
